@@ -4,6 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="Dunedin waterfront condo with seller financing at 6% fixed. Explore payment scenarios, HOA inclusions, amenities, and financing comparisons." />
+  <meta name="theme-color" content="#315f48" />
+  <link rel="canonical" href="https://mortgagedunedin.com/" />
+
+  <!-- Social sharing preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mortgagedunedin.com/" />
+  <meta property="og:title" content="2700 Bayshore Blvd, Apt 3111 | Dunedin Waterfront Condo" />
+  <meta property="og:description" content="Dunedin waterfront condo with 6% fixed seller financing. Explore payment scenarios, HOA inclusions, amenities, and financing comparisons." />
+  <meta property="og:image" content="https://mortgagedunedin.com/images/condo-hero.jpeg" />
+  <meta property="og:image:alt" content="2700 Bayshore Blvd waterfront condo in Dunedin, Florida" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Inline favicon: no extra favicon file required -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23315f48'/%3E%3Cpath d='M12 34 32 17l20 17v17H39V38H25v13H12V34Z' fill='white'/%3E%3Cpath d='M8 54c6-4 12-4 18 0s12 4 18 0 10-3 12-2v5c-4-1-8 0-12 3-6 4-12 4-18 0S14 56 8 60v-6Z' fill='%23d9eee2'/%3E%3C/svg%3E" />
+  <link rel="preload" as="image" href="images/condo-hero.jpeg" />
+
   <title>2700 Bayshore Blvd, Apt 3111 | Dunedin Condo</title>
   <style>
     :root {
@@ -47,11 +63,18 @@
 
     .hero {
       overflow: hidden;
-      background: linear-gradient(135deg, #214431, #3f7258 70%, #4f8168);
+      background-color: #214431;
+      background-image:
+        linear-gradient(105deg, rgba(22, 52, 36, .96) 0%, rgba(33, 68, 49, .88) 42%, rgba(49, 95, 72, .55) 72%, rgba(31, 65, 46, .36) 100%),
+        url("images/condo-hero.jpeg");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
       color: #fff;
       border-radius: 26px;
       padding: clamp(24px, 5vw, 52px);
       box-shadow: var(--shadow);
+      position: relative;
     }
 
     .eyebrow {
@@ -679,7 +702,10 @@
 
     @media (max-width: 760px) {
       .page { width: min(100% - 18px, 1120px); padding-top: 9px; }
-      .hero { border-radius: 18px; }
+      .hero {
+        border-radius: 18px;
+        background-position: 58% center;
+      }
       .price-grid, .facts, .grid-2, .grid-3, .results, .included-grid, .compare-cards, .metrics, .house-costs, .property-copy { grid-template-columns: 1fr; }
       .result-main { grid-column: auto; }
       .amortization { grid-template-columns: 1fr; }
