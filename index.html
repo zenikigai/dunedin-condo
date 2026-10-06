@@ -1765,38 +1765,114 @@
     revealSections.forEach((section) => revealObserver.observe(section));
   }
 
-  if ("IntersectionObserver" in window) {
-    const navObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  // Reliable section highlighting.
+  // Clicking a menu item highlights it immediately. While scrolling,
+  // the item for the section currently under the sticky menu stays active.
+  const siteNav = document.querySelector(".site-nav");
+  const navTargets = navLinks
+    .map((link) => {
+      const href = link.getAttribute("href") || "";
+      return {
+        link,
+        target: href.startsWith("#") ? document.querySelector(href) : null
+      };
+    })
+    .filter((item) => item.target);
 
-      if (!visible) return;
+  let manualNavLockUntil = 0;
+  let navRafPending = false;
 
-      navLinks.forEach((link) => {
-        const active = link.getAttribute("href") === "#" + visible.target.id;
-        link.classList.toggle("active", active);
+  function setActiveNav(id, centerOnMobile = false) {
+    navTargets.forEach(({ link, target }) => {
+      const active = target.id === id;
+      link.classList.toggle("active", active);
 
-        if (active) {
-          link.setAttribute("aria-current", "true");
-        } else {
-          link.removeAttribute("aria-current");
+      if (active) {
+        link.setAttribute("aria-current", "true");
+
+        if (centerOnMobile) {
+          link.scrollIntoView({
+            behavior: reduceMotion ? "auto" : "smooth",
+            block: "nearest",
+            inline: "center"
+          });
         }
-      });
-    }, {
-      threshold: [0.18, 0.35, 0.55],
-      rootMargin: "-16% 0px -58% 0px"
+      } else {
+        link.removeAttribute("aria-current");
+      }
     });
-
-    revealSections.forEach((section) => navObserver.observe(section));
   }
+
+  function updateActiveNav() {
+    if (!navTargets.length) return;
+
+    // During a menu-triggered smooth scroll, keep the clicked item green
+    // instead of letting intermediate sections steal the active state.
+    if (performance.now() < manualNavLockUntil) return;
+
+    const navHeight = siteNav ? siteNav.getBoundingClientRect().height : 0;
+    const activationLine = navHeight + 26;
+
+    let current = navTargets[0].target;
+
+    for (const { target } of navTargets) {
+      if (target.getBoundingClientRect().top <= activationLine) {
+        current = target;
+      } else {
+        break;
+      }
+    }
+
+    // Always activate Contact at the very bottom of the page.
+    const nearBottom =
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight - 8;
+
+    if (nearBottom) {
+      current = navTargets[navTargets.length - 1].target;
+    }
+
+    setActiveNav(current.id);
+  }
+
+  navTargets.forEach(({ link, target }) => {
+    link.addEventListener("click", () => {
+      // Immediate visual feedback on tap/click.
+      setActiveNav(target.id, true);
+
+      // Smooth anchor scrolling passes through other sections.
+      // Lock the selected item long enough for that scroll to finish.
+      manualNavLockUntil = performance.now() + 1100;
+
+      window.setTimeout(() => {
+        manualNavLockUntil = 0;
+        updateActiveNav();
+      }, 1150);
+    });
+  });
 
   function updateBackToTop() {
     backToTop.classList.toggle("visible", window.scrollY > 700);
   }
 
-  window.addEventListener("scroll", updateBackToTop, { passive: true });
+  function handlePageScroll() {
+    updateBackToTop();
+
+    if (!navRafPending) {
+      navRafPending = true;
+
+      requestAnimationFrame(() => {
+        updateActiveNav();
+        navRafPending = false;
+      });
+    }
+  }
+
+  window.addEventListener("scroll", handlePageScroll, { passive: true });
+  window.addEventListener("resize", updateActiveNav, { passive: true });
+
   updateBackToTop();
+  updateActiveNav();
 
   let resizeTimer = null;
   window.addEventListener("resize", () => {
