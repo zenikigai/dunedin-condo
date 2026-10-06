@@ -61,31 +61,13 @@
       padding: 18px 0 52px;
     }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
-      gap: clamp(20px, 3vw, 34px);
-      align-items: stretch;
+    .hero-media {
       overflow: hidden;
-      background: linear-gradient(135deg, #214431, #3f7258 70%, #4f8168);
-      color: #fff;
+      background: #fff;
+      border: 1px solid var(--line);
       border-radius: 26px;
-      padding: clamp(24px, 5vw, 52px);
       box-shadow: var(--shadow);
-    }
-
-    .hero-content {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero-photo-wrap {
-      min-width: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin-bottom: 14px;
     }
 
     .hero-photo {
@@ -93,12 +75,67 @@
       width: 100%;
       height: auto;
       max-width: 100%;
-      min-height: 0;
       object-fit: contain;
       object-position: center;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 12px 28px rgba(15, 34, 24, .20);
+      background: #eef3ef;
+    }
+
+    .hero-media-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.97);
+    }
+
+    .hero-media-note {
+      min-width: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .hero-media-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .media-link {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid #cbd8cf;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .hero {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 92% 15%, rgba(255,255,255,.11), transparent 32%),
+        linear-gradient(135deg, #214431, #3f7258 70%, #4f8168);
+      color: #fff;
+      border-radius: 26px;
+      padding: clamp(26px, 5vw, 54px);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .hero-content {
+      min-width: 0;
+      max-width: 980px;
     }
 
     .eyebrow {
@@ -213,25 +250,178 @@
       color: rgba(255,255,255,.84);
     }
 
-    .nav-pills {
-      margin: 16px 0 22px;
-      padding: 0 2px;
+    .site-nav {
+      position: sticky;
+      top: 8px;
+      z-index: 50;
+      margin: 14px 0 22px;
+      padding: 8px;
+      border: 1px solid rgba(215,225,218,.90);
+      border-radius: 18px;
+      background: rgba(244,247,243,.91);
+      box-shadow: 0 10px 28px rgba(28,48,36,.09);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
     }
 
+    .nav-pills {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      touch-action: pan-x pan-y;
+    }
+
+    .nav-pills::-webkit-scrollbar { display: none; }
+
     .nav-pills a {
+      flex: 0 0 auto;
       text-decoration: none;
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 8px 12px;
+      padding: 9px 13px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 760;
       color: var(--accent-dark);
+      white-space: nowrap;
+      transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .nav-pills a.active,
+    .nav-pills a[aria-current="true"] {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
     }
 
     .section {
-      margin-top: 18px;
-      scroll-margin-top: 14px;
+      margin-top: 22px;
+      scroll-margin-top: 88px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 1.05px;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: .5;
+    }
+
+    #overview {
+      background: linear-gradient(145deg, #ffffff, #f7faf7);
+      border-top: 4px solid #8ca999;
+    }
+
+    #calculator {
+      background: linear-gradient(145deg, #f9fdf9, #edf6f0);
+      border-color: #cfe1d5;
+      border-top: 4px solid var(--accent);
+    }
+
+    #hoa {
+      background: linear-gradient(145deg, #fffdf8, #f7f2e7);
+      border-color: #e8dec7;
+      border-top: 4px solid #b69b65;
+    }
+
+    #waterfront {
+      background:
+        radial-gradient(circle at 95% 5%, rgba(67,124,103,.10), transparent 28%),
+        linear-gradient(145deg, #f7fbfa, #eaf4f0);
+      border-color: #cfe0d9;
+      border-top: 4px solid #4d816b;
+    }
+
+    #bank {
+      background: linear-gradient(145deg, #fbfcfd, #eef2f5);
+      border-color: #d9e0e5;
+      border-top: 4px solid #637788;
+    }
+
+    #details {
+      background: linear-gradient(145deg, #ffffff, #f8f8f5);
+      border-top: 4px solid #9c9b82;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: max(16px, env(safe-area-inset-right));
+      bottom: max(16px, env(safe-area-inset-bottom));
+      z-index: 70;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      background: rgba(35,71,53,.94);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(20,45,31,.24);
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 900;
+      opacity: 0;
+      transform: translateY(12px) scale(.94);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease, background .2s ease;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .motion-ready .reveal-pending {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .motion-ready .reveal-pending.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .58s ease, transform .58s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .hero-media {
+      animation: heroMediaIn .65s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    .hero {
+      animation: heroTextIn .72s .08s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    @keyframes heroMediaIn {
+      from { opacity: 0; transform: translateY(16px) scale(.992); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes heroTextIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
@@ -240,6 +430,20 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: clamp(20px, 4vw, 30px);
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    @media (hover:hover) and (pointer:fine) {
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 38px rgba(28,48,36,.11);
+      }
+
+      .media-link:hover {
+        transform: translateY(-1px);
+        background: var(--accent-soft);
+        border-color: #a9c0b0;
+      }
     }
 
     .section-title {
@@ -726,25 +930,34 @@
 
     @media (max-width: 760px) {
       .page { width: min(100% - 18px, 1120px); padding-top: 9px; }
+      .hero-media,
       .hero {
-        grid-template-columns: 1fr;
-        gap: 20px;
         border-radius: 18px;
-        padding: 18px;
       }
-      .hero-photo-wrap {
-        order: -1;
-        width: 100%;
+      .hero {
+        padding: 22px 18px;
       }
       .hero-photo {
         width: 100%;
         height: auto;
         max-width: 100%;
-        min-height: 0;
-        max-height: none;
-        aspect-ratio: auto;
         object-fit: contain;
         object-position: center;
+      }
+      .hero-media-bar {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 10px 12px 12px;
+      }
+      .hero-media-actions {
+        justify-content: stretch;
+      }
+      .hero-media-actions .media-link {
+        flex: 1 1 140px;
+      }
+      .site-nav {
+        top: 6px;
+        margin-top: 10px;
         border-radius: 15px;
       }
       .price-grid, .facts, .grid-2, .grid-3, .results, .included-grid, .compare-cards, .metrics, .house-costs, .property-copy { grid-template-columns: 1fr; }
@@ -762,12 +975,29 @@
       .house-input-row .money-input { width: 100%; }
       .button { width: 100%; }
       .hero-actions { gap: 8px; }
-      .hero-photo {
-        width: 100%;
-        height: auto;
-        max-height: none;
-        aspect-ratio: auto;
-        object-fit: contain;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      .hero-media,
+      .hero {
+        animation: none !important;
+      }
+
+      .motion-ready .reveal-pending,
+      .motion-ready .reveal-pending.is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .button,
+      .card,
+      .media-link,
+      .back-to-top,
+      .nav-pills a {
+        transition: none !important;
       }
     }
 
@@ -775,7 +1005,7 @@
       body { background: #fff; }
       .page { width: 100%; padding: 0; }
       .hero, .card, .contact-card { box-shadow: none; break-inside: avoid; }
-      .nav-pills, .interactive-only, .hero-actions { display: none !important; }
+      .nav-pills, .site-nav, .interactive-only, .hero-actions, .hero-media-bar, .back-to-top { display: none !important; }
       details { border: 0; }
       details > summary { display: none; }
       details > *:not(summary) { display: block !important; }
@@ -786,7 +1016,26 @@
 <body>
 <main class="page">
 
-  <header class="hero" id="top">
+  <div class="hero-media" id="top">
+    <img
+      class="hero-photo"
+      src="images/condo-hero.jpeg"
+      alt="2700 Bayshore Blvd waterfront condo in Dunedin, Florida"
+      width="1200"
+      height="800"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hero-media-bar interactive-only">
+      <div class="hero-media-note">Property overview image · open or download the original image anytime.</div>
+      <div class="hero-media-actions">
+        <a class="media-link" href="images/condo-hero.jpeg" target="_blank" rel="noopener">↗ Open full size</a>
+        <a class="media-link" href="images/condo-hero.jpeg" download="2700-bayshore-blvd-apt-3111.jpeg">↓ Download image</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
     <div class="hero-content">
       <div class="eyebrow">Dunedin waterfront condo</div>
       <h1>2700 Bayshore Blvd, Apt 3111</h1>
@@ -818,31 +1067,22 @@
         <button class="button button-ghost" id="printButton" type="button">Print / Save PDF</button>
       </div>
     </div>
-
-    <div class="hero-photo-wrap">
-      <img
-        class="hero-photo"
-        src="images/condo-hero.jpeg"
-        alt="2700 Bayshore Blvd waterfront condo in Dunedin, Florida"
-        width="1200"
-        height="800"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
   </header>
 
-  <nav class="nav-pills interactive-only" aria-label="Page sections">
-    <a href="#overview">Overview</a>
-    <a href="#calculator">Payment calculator</a>
-    <a href="#hoa">HOA & monthly cost</a>
-    <a href="#waterfront">Waterfront value</a>
-    <a href="#bank">Seller vs bank</a>
-    <a href="#details">Property details</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="site-nav interactive-only">
+    <nav class="nav-pills" aria-label="Page sections">
+      <a href="#overview">Overview</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#hoa">Monthly cost</a>
+      <a href="#waterfront">Waterfront value</a>
+      <a href="#bank">Seller vs bank</a>
+      <a href="#details">Property</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 
   <section class="section card" id="overview">
+    <div class="section-kicker">01 · At a glance</div>
     <h2 class="section-title">The offer at a glance</h2>
     <p class="section-intro">The goal of this page is simple: make the numbers visible before you contact anyone.</p>
     <div class="facts">
@@ -858,6 +1098,7 @@
   </section>
 
   <section class="section card" id="calculator">
+    <div class="section-kicker">02 · Build your payment</div>
     <h2 class="section-title">Seller-financing calculator</h2>
     <p class="section-intro">Change the amount paid at closing, the term, and optional extra principal. Everything below updates immediately.</p>
 
@@ -921,6 +1162,7 @@
   </section>
 
   <section class="section card" id="hoa">
+    <div class="section-kicker">03 · Monthly cost</div>
     <h2 class="section-title">What would the monthly housing cost look like?</h2>
     <p class="section-intro">Current known recurring property expenses are pre-filled. Taxes, insurance, electricity, and HOA amounts can change, so they remain editable estimates.</p>
 
@@ -967,6 +1209,7 @@
   </section>
 
   <section class="section card" id="waterfront">
+    <div class="section-kicker">04 · Waterfront value</div>
     <div class="compare-highlight">
       <h3>Waterfront living without paying for every service separately</h3>
       <p>Waterfront access, a heated pool, common-area upkeep, several utilities, and community amenities are bundled through the association rather than maintained one by one by the owner.</p>
@@ -1020,6 +1263,7 @@
   </section>
 
   <section class="section card" id="bank">
+    <div class="section-kicker">05 · Financing comparison</div>
     <h2 class="section-title">6% seller financing vs. a bank rate</h2>
     <p class="section-intro">This section isolates the financing cost by using the <strong>same financed balance and the same term</strong> selected in the seller-financing calculator above. Change the bank rate from 7% to 8% and enter any lender-specific fees from an actual Loan Estimate.</p>
 
@@ -1036,9 +1280,17 @@
     </div>
 
     <div class="field">
-      <label for="bankFees">Bank-specific lender charges <small>optional—enter from Loan Estimate</small></label>
-      <div class="money-input"><input id="bankFees" type="number" min="0" step="100" value="0"></div>
-      <div class="result-sub">Use this only for lender-specific items you actually want to compare, such as points or origination/underwriting charges. Do not automatically count title, taxes, insurance, recording, or other costs that may exist in either transaction.</div>
+      <label for="bankFees">Illustrative bank origination / lender charges <small>1% placeholder · editable</small></label>
+      <div class="money-input"><input id="bankFees" type="number" min="0" step="50" value="800"></div>
+      <div class="preset-row">
+        <button class="preset" id="useOnePercentFee" type="button">Use 1% placeholder</button>
+      </div>
+      <div class="result-sub">
+        To make the comparison easier to visualize, this calculator starts with an illustrative lender-charge placeholder equal to
+        <strong>1% of the amount financed</strong> (for example, $800 on an $80,000 loan). This is not a lender quote or guaranteed market average.
+        Replace it with the lender-specific charges shown on an actual Loan Estimate. Title, taxes, insurance, recording, prepaid items,
+        and other costs that may apply to either transaction are not automatically counted as bank-only fees.
+      </div>
     </div>
 
     <div class="compare-cards">
@@ -1049,7 +1301,7 @@
           <div class="line-item"><span>Term</span><strong id="sellerCompareTerm">—</strong></div>
           <div class="line-item"><span>Monthly P&I</span><strong id="sellerComparePayment">—</strong></div>
           <div class="line-item"><span>Total interest</span><strong id="sellerCompareInterest">—</strong></div>
-          <div class="line-item"><span>Traditional lender charges</span><strong>$0 assumed</strong></div>
+          <div class="line-item"><span>Traditional lender charges</span><strong>Not applicable</strong></div>
         </div>
       </div>
 
@@ -1077,6 +1329,7 @@
   </section>
 
   <section class="section card" id="details">
+    <div class="section-kicker">06 · Property & lifestyle</div>
     <h2 class="section-title">Property & lifestyle</h2>
     <p class="section-intro">A ground-floor end unit near the water with everyday conveniences close by.</p>
 
@@ -1110,6 +1363,7 @@
 
   <section class="section" id="contact">
     <div class="contact-card">
+      <div class="section-kicker" style="color:#d9eee2;">07 · Get in touch</div>
       <div class="eyebrow">Questions or showing request</div>
       <h2>Interested in the condo?</h2>
       <p>Call or text directly to discuss the property, seller-financing terms, or a showing.</p>
@@ -1127,6 +1381,8 @@
   </div>
 
 </main>
+
+<a class="back-to-top interactive-only" id="backToTop" href="#top" aria-label="Back to top" title="Back to top">↑</a>
 
 <script>
 (function () {
@@ -1322,6 +1578,8 @@
   const bankRate = $("bankRate");
   const bankRateSlider = $("bankRateSlider");
   const bankFees = $("bankFees");
+  const useOnePercentFee = $("useOnePercentFee");
+  let bankFeesAuto = true;
 
   function sellerScenario() {
     const downValue = clamp(num(down, CONFIG.minDown), CONFIG.minDown, CONFIG.maxDown);
@@ -1369,7 +1627,12 @@
     $("hoaCompare").textContent = money(hoaValue, false) + "/mo";
 
     const br = clamp(num(bankRate, 7.5), 7, 8);
-    const fees = Math.max(0, num(bankFees, 0));
+
+    if (bankFeesAuto) {
+      bankFees.value = Math.round(s.principal * 0.01);
+    }
+
+    const fees = Math.max(0, num(bankFees, Math.round(s.principal * 0.01)));
     const bankPayment = loanPayment(s.principal, br, s.months);
     const bankInterest = bankPayment * s.months - s.principal;
     const monthlyDiff = Math.max(0, bankPayment - s.scheduled);
@@ -1419,7 +1682,17 @@
   term.addEventListener("change", normalizeMainInputs);
   bankRate.addEventListener("change", normalizeMainInputs);
 
-  [extra, firstPayment, hoa, taxes, insurance, electricity, bankFees].forEach((el) => el.addEventListener("input", updateAll));
+  [extra, firstPayment, hoa, taxes, insurance, electricity].forEach((el) => el.addEventListener("input", updateAll));
+
+  bankFees.addEventListener("input", () => {
+    bankFeesAuto = false;
+    updateAll();
+  });
+
+  useOnePercentFee.addEventListener("click", () => {
+    bankFeesAuto = true;
+    updateAll();
+  });
   document.querySelectorAll(".house-cost").forEach((el) => el.addEventListener("input", updateAll));
 
   document.querySelectorAll("[data-down]").forEach((button) => {
@@ -1466,6 +1739,64 @@
     const next = new Date(now.getFullYear(), now.getMonth() + 1, 1);
     firstPayment.value = next.getFullYear() + "-" + String(next.getMonth() + 1).padStart(2, "0");
   }
+
+  // Subtle reveal animation, active navigation, and back-to-top.
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealSections = Array.from(document.querySelectorAll(".section"));
+  const navLinks = Array.from(document.querySelectorAll(".nav-pills a"));
+  const backToTop = $("backToTop");
+
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    document.body.classList.add("motion-ready");
+    revealSections.forEach((section) => section.classList.add("reveal-pending"));
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: "0px 0px -8% 0px"
+    });
+
+    revealSections.forEach((section) => revealObserver.observe(section));
+  }
+
+  if ("IntersectionObserver" in window) {
+    const navObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      navLinks.forEach((link) => {
+        const active = link.getAttribute("href") === "#" + visible.target.id;
+        link.classList.toggle("active", active);
+
+        if (active) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }, {
+      threshold: [0.18, 0.35, 0.55],
+      rootMargin: "-16% 0px -58% 0px"
+    });
+
+    revealSections.forEach((section) => navObserver.observe(section));
+  }
+
+  function updateBackToTop() {
+    backToTop.classList.toggle("visible", window.scrollY > 700);
+  }
+
+  window.addEventListener("scroll", updateBackToTop, { passive: true });
+  updateBackToTop();
 
   let resizeTimer = null;
   window.addEventListener("resize", () => {
