@@ -62,19 +62,41 @@
     }
 
     .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: clamp(20px, 3vw, 34px);
+      align-items: stretch;
       overflow: hidden;
-      background-color: #214431;
-      background-image:
-        linear-gradient(105deg, rgba(22, 52, 36, .96) 0%, rgba(33, 68, 49, .88) 42%, rgba(49, 95, 72, .55) 72%, rgba(31, 65, 46, .36) 100%),
-        url("images/condo-hero.jpeg");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+      background: linear-gradient(135deg, #214431, #3f7258 70%, #4f8168);
       color: #fff;
       border-radius: 26px;
       padding: clamp(24px, 5vw, 52px);
       box-shadow: var(--shadow);
-      position: relative;
+    }
+
+    .hero-content {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-photo-wrap {
+      min-width: 0;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .hero-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 12px 28px rgba(15, 34, 24, .20);
     }
 
     .eyebrow {
@@ -703,8 +725,24 @@
     @media (max-width: 760px) {
       .page { width: min(100% - 18px, 1120px); padding-top: 9px; }
       .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
         border-radius: 18px;
-        background-position: 58% center;
+        padding: 18px;
+      }
+      .hero-photo-wrap {
+        order: -1;
+        width: 100%;
+      }
+      .hero-photo {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: 280px;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 15px;
       }
       .price-grid, .facts, .grid-2, .grid-3, .results, .included-grid, .compare-cards, .metrics, .house-costs, .property-copy { grid-template-columns: 1fr; }
       .result-main { grid-column: auto; }
@@ -721,6 +759,10 @@
       .house-input-row .money-input { width: 100%; }
       .button { width: 100%; }
       .hero-actions { gap: 8px; }
+      .hero-photo {
+        max-height: 220px;
+        aspect-ratio: 3 / 2;
+      }
     }
 
     @media print {
@@ -739,34 +781,48 @@
 <main class="page">
 
   <header class="hero" id="top">
-    <div class="eyebrow">Dunedin waterfront condo</div>
-    <h1>2700 Bayshore Blvd, Apt 3111</h1>
-    <div class="hero-location">Dunedin, Florida 34698 · 1 bedroom · 1 bathroom · ground-floor end unit</div>
+    <div class="hero-content">
+      <div class="eyebrow">Dunedin waterfront condo</div>
+      <h1>2700 Bayshore Blvd, Apt 3111</h1>
+      <div class="hero-location">Dunedin, Florida 34698 · 1 bedroom · 1 bathroom · ground-floor end unit</div>
 
-    <p class="hero-copy">
-      A transparent way to buy near the water: compare the cash price, model seller financing at a fixed 6% rate,
-      see the estimated monthly carrying cost, and understand exactly what the HOA includes before you ever make an offer.
-    </p>
+      <p class="hero-copy">
+        A transparent way to buy near the water: compare the cash price, model seller financing at a fixed 6% rate,
+        see the estimated monthly carrying cost, and understand exactly what the HOA includes before you ever make an offer.
+      </p>
 
-    <div class="price-grid">
-      <div class="price-card">
-        <div class="price-label">Seller financing purchase price</div>
-        <div class="price-number">$160,000</div>
-        <div class="price-sub">6% fixed · $80,000–$120,000 paid at closing · choose a 5–15 year repayment term</div>
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="price-label">Seller financing purchase price</div>
+          <div class="price-number">$160,000</div>
+          <div class="price-sub">6% fixed · $80,000–$120,000 paid at closing · choose a 5–15 year repayment term</div>
+        </div>
+        <div class="price-card">
+          <div class="price-label">Cash purchase</div>
+          <div class="price-number">$145,000</div>
+          <div class="price-sub">A separate cash-purchase option. Ask for current terms before relying on any price comparison.</div>
+        </div>
       </div>
-      <div class="price-card">
-        <div class="price-label">Cash purchase</div>
-        <div class="price-number">$145,000</div>
-        <div class="price-sub">A separate cash-purchase option. Ask for current terms before relying on any price comparison.</div>
+
+      <div class="hero-actions interactive-only">
+        <a class="button button-primary" href="#calculator">Build your payment</a>
+        <a class="button button-ghost" href="tel:+12672753997">Call 267-275-3997</a>
+        <a class="button button-ghost" href="sms:+12672753997">Text seller</a>
+        <a class="button button-ghost" href="https://www.zillow.com/homedetails/2700-Bayshore-Blvd-APT-3111-Dunedin-FL-34698/47071268_zpid/" target="_blank" rel="noopener">View Zillow</a>
+        <button class="button button-ghost" id="printButton" type="button">Print / Save PDF</button>
       </div>
     </div>
 
-    <div class="hero-actions interactive-only">
-      <a class="button button-primary" href="#calculator">Build your payment</a>
-      <a class="button button-ghost" href="tel:+12672753997">Call 267-275-3997</a>
-      <a class="button button-ghost" href="sms:+12672753997">Text seller</a>
-      <a class="button button-ghost" href="https://www.zillow.com/homedetails/2700-Bayshore-Blvd-APT-3111-Dunedin-FL-34698/47071268_zpid/" target="_blank" rel="noopener">View Zillow</a>
-      <button class="button button-ghost" id="printButton" type="button">Print / Save PDF</button>
+    <div class="hero-photo-wrap">
+      <img
+        class="hero-photo"
+        src="images/condo-hero.jpeg"
+        alt="2700 Bayshore Blvd waterfront condo in Dunedin, Florida"
+        width="1200"
+        height="800"
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
   </header>
 
