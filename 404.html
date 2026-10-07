@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Page Not Found · Mortgage Dunedin</title>
+  <meta name="theme-color" content="#305e47">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23305e47'/%3E%3Cpath d='M18 52 50 25l32 27v27H59V60H41v19H18z' fill='white'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg: #f4f7f3;
+      --card: #ffffff;
+      --ink: #17211b;
+      --muted: #68736c;
+      --accent: #305e47;
+      --accent-dark: #244936;
+      --accent-soft: #e8f0eb;
+      --line: #dce5de;
+      --shadow: 0 18px 48px rgba(25,48,33,.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(48,94,71,.10), transparent 28rem),
+        radial-gradient(circle at 95% 95%, rgba(48,94,71,.08), transparent 26rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .wrap {
+      width: min(760px, 100%);
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(34px, 7vw, 66px);
+      color: white;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(255,255,255,.13), transparent 34%),
+        linear-gradient(135deg, #214431, #3f7258 70%, #4f8168);
+    }
+
+    .code {
+      font-size: clamp(72px, 18vw, 150px);
+      line-height: .8;
+      font-weight: 900;
+      letter-spacing: -6px;
+      opacity: .16;
+      position: absolute;
+      right: 24px;
+      top: 28px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .eyebrow {
+      position: relative;
+      z-index: 1;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 1.05px;
+      text-transform: uppercase;
+      opacity: .82;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin: 10px 0 10px;
+      max-width: 560px;
+      font-size: clamp(36px, 7vw, 64px);
+      line-height: .98;
+      letter-spacing: -1.8px;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 600px;
+      color: rgba(255,255,255,.86);
+      font-size: clamp(15px, 2.5vw, 18px);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .secondary {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      border-color: #cbd9cf;
+    }
+
+    .small {
+      padding: 0 22px 22px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (hover:hover) and (pointer:fine) {
+      .button:hover { transform: translateY(-1px); }
+      .primary:hover { background: var(--accent-dark); }
+      .secondary:hover { border-color: #9fb7a7; }
+    }
+
+    @media (max-width: 520px) {
+      .card { border-radius: 20px; }
+      .hero { padding: 30px 20px; }
+      .actions { padding: 16px; }
+      .button { width: 100%; }
+      .small { padding: 0 16px 18px; }
+      .code { right: 14px; top: 20px; letter-spacing: -4px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="hero">
+        <div class="code">404</div>
+        <div class="eyebrow">Mortgage Dunedin</div>
+        <h1>This page isn't here.</h1>
+        <p>
+          The link may be outdated, mistyped, or the page may have moved.
+          You can return to the condo listing or open the mortgage calculator.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="button primary" href="/">← Back to condo listing</a>
+        <a class="button secondary" href="/calculator.html">Open mortgage calculator</a>
+      </div>
+
+      <div class="small">
+        If you expected a specific page, check the address and try again.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
