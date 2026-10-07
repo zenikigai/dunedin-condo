@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="googlebot" content="noindex,nofollow,noarchive">
+  <title>Mortgage & Home Cost Calculator</title>
+  <meta name="description" content="Private-link mortgage and home ownership cost calculator.">
+  <link rel="canonical" href="https://mortgagedunedin.com/calculator.html">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23305e47'/%3E%3Cpath d='M18 52 50 25l32 27v27H59V60H41v19H18z' fill='white'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg: #f4f7f3;
+      --card: #ffffff;
+      --ink: #17211b;
+      --muted: #68736c;
+      --accent: #305e47;
+      --accent-dark: #244936;
+      --accent-soft: #e8f0eb;
+      --line: #dce5de;
+      --warm: #f7f3e9;
+      --blue-soft: #eef4f6;
+      --shadow: 0 12px 34px rgba(25, 48, 33, .08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(48,94,71,.07), transparent 26rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 14px 0 54px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 7px 22px rgba(28,48,36,.06);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--accent-dark);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .private-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .hero {
+      overflow: hidden;
+      position: relative;
+      border-radius: 26px;
+      padding: clamp(28px, 5vw, 54px);
+      color: #fff;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(255,255,255,.13), transparent 34%),
+        linear-gradient(135deg, #214431, #3f7258 70%, #4f8168);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: 1.05px;
+      text-transform: uppercase;
+      opacity: .82;
+    }
+
+    h1 {
+      margin: 8px 0 10px;
+      max-width: 800px;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: .98;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(15px, 2.1vw, 18px);
+      color: rgba(255,255,255,.88);
+    }
+
+    .hero-actions, .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero-actions { margin-top: 22px; }
+
+    .button, .preset {
+      min-height: 40px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .button {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button-primary {
+      color: var(--accent-dark);
+      background: #fff;
+    }
+
+    .button-ghost {
+      color: #fff;
+      border-color: rgba(255,255,255,.28);
+      background: rgba(255,255,255,.08);
+    }
+
+    .button-secondary {
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border-color: #c9d9ce;
+    }
+
+    .section {
+      margin-top: 20px;
+      padding: clamp(20px, 4vw, 30px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .section.primary {
+      background: linear-gradient(145deg, #fbfefc, #edf6f0);
+      border-top: 4px solid var(--accent);
+    }
+
+    .section.costs {
+      background: linear-gradient(145deg, #fffdf9, #f7f2e7);
+      border-color: #e6ddc9;
+      border-top: 4px solid #b49a67;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(24px, 3.5vw, 36px);
+      letter-spacing: -.8px;
+    }
+
+    .section-intro {
+      margin: 7px 0 0;
+      max-width: 820px;
+      color: var(--muted);
+    }
+
+    .section-kicker {
+      margin-bottom: 8px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .field {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid #dce6df;
+      border-radius: 16px;
+      background: rgba(255,255,255,.86);
+    }
+
+    .field label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+      font-weight: 780;
+    }
+
+    .field label small {
+      color: var(--muted);
+      font-weight: 650;
+      text-align: right;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap .prefix {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 760;
+      pointer-events: none;
+    }
+
+    .input-wrap .suffix {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 760;
+      pointer-events: none;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid #cfdad2;
+      border-radius: 12px;
+      padding: 9px 12px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 750;
+      outline: none;
+    }
+
+    .money input[type="number"] { padding-left: 28px; }
+    .percent input[type="number"],
+    .years input[type="number"] { padding-right: 38px; }
+
+    input[type="number"]:focus {
+      border-color: #88a493;
+      box-shadow: 0 0 0 3px rgba(48,94,71,.10);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin: 12px 0 2px;
+      accent-color: var(--accent);
+      touch-action: pan-y;
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .helper {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .preset-row { margin-top: 9px; }
+
+    .preset {
+      min-height: 34px;
+      padding: 6px 10px;
+      border-color: #cedbd2;
+      background: #fff;
+      color: var(--accent-dark);
+      font-size: 12px;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .result-card {
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid #d8e4db;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .result-card.key {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(135deg, #2c5a43, #477760);
+    }
+
+    .result-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 820;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+    }
+
+    .key .result-label { color: rgba(255,255,255,.76); }
+
+    .result-value {
+      margin-top: 5px;
+      font-size: clamp(22px, 3.4vw, 34px);
+      line-height: 1.08;
+      font-weight: 850;
+      letter-spacing: -.6px;
+      overflow-wrap: anywhere;
+    }
+
+    .result-sub {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .key .result-sub { color: rgba(255,255,255,.76); }
+
+    .monthly-total {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, #254e3a, #46745d);
+    }
+
+    .monthly-total strong {
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .breakdown {
+      margin-top: 14px;
+      overflow: hidden;
+      border: 1px solid #e1e7e2;
+      border-radius: 15px;
+      background: #fff;
+    }
+
+    .line-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 13px;
+      border-bottom: 1px solid #edf0ed;
+    }
+
+    .line-item:last-child { border-bottom: 0; }
+    .line-item span { color: var(--muted); }
+    .line-item strong { text-align: right; }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mini {
+      padding: 13px;
+      border: 1px solid #e0e7e2;
+      border-radius: 14px;
+      background: rgba(255,255,255,.8);
+    }
+
+    .mini span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 720;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .mini strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 18px;
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding: 16px 6px;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid #cfe0d5;
+      border-radius: 14px;
+      background: #f1f7f3;
+      color: #34513f;
+      font-size: 13px;
+    }
+
+    @media (hover:hover) and (pointer:fine) {
+      .button:hover, .preset:hover { transform: translateY(-1px); }
+    }
+
+    @media (max-width: 820px) {
+      .results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 700px) {
+      .page { width: min(100% - 18px, 1120px); padding-top: 9px; }
+      .topbar { align-items: flex-start; }
+      .hero { border-radius: 18px; padding: 27px 19px; }
+      h1 { letter-spacing: -1.4px; }
+      .section { border-radius: 18px; padding: 18px; }
+      .input-grid, .results, .mini-grid { grid-template-columns: 1fr; }
+      .monthly-total { grid-template-columns: 1fr; }
+      .monthly-total strong { white-space: normal; }
+      .field label { align-items: flex-start; }
+    }
+
+    @media (max-width: 430px) {
+      .private-note { display: none; }
+      .button { width: 100%; }
+      .hero-actions { gap: 7px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; padding: 0; }
+      .topbar, .hero-actions, input[type="range"], .preset-row { display: none !important; }
+      .hero, .section { box-shadow: none; break-inside: avoid; }
+      .hero { color: #000; background: #fff; border: 1px solid #bbb; }
+      .hero p { color: #444; }
+      .result-card.key, .monthly-total { color: #000; background: #fff; border: 1px solid #bbb; }
+      .key .result-label, .key .result-sub { color: #555; }
+    }
+  </style>
+</head>
+
+<body>
+<main class="page">
+  <div class="topbar">
+    <a class="back-link" href="/">← View the Dunedin condo for sale</a>
+    <div class="private-note">Calculator page · not linked from the main site</div>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">Mortgage + ownership calculator</div>
+    <h1>What will this home really cost?</h1>
+    <p>
+      Adjust the purchase price, down payment, rate, term, closing fees, and ongoing home expenses.
+      The defaults are preloaded for the Dunedin condo, but every field can be changed.
+    </p>
+
+    <div class="hero-actions">
+      <button class="button button-primary" id="resetCondo" type="button">Reset to condo defaults</button>
+      <button class="button button-ghost" id="clearExtras" type="button">Clear ongoing costs</button>
+      <button class="button button-ghost" id="printButton" type="button">Print / Save PDF</button>
+    </div>
+  </header>
+
+  <section class="section primary">
+    <div class="section-kicker">01 · Financing</div>
+    <h2 class="section-title">Mortgage setup</h2>
+    <p class="section-intro">
+      Type an exact number or use the slider below each field. The sliders use practical ranges;
+      typed values can go beyond a slider where noted.
+    </p>
+
+    <div class="input-grid">
+      <div class="field">
+        <label for="homePrice">Home price <small>slider $50k–$500k</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="homePrice" type="number" min="0" step="1000" value="156000" inputmode="decimal">
+        </div>
+        <input id="homePriceRange" type="range" min="50000" max="500000" step="1000" value="156000">
+        <div class="range-labels"><span>$50k</span><span>$275k</span><span>$500k</span></div>
+      </div>
+
+      <div class="field">
+        <label for="downPercent">Down payment <small>0%–100%</small></label>
+        <div class="input-wrap percent">
+          <input id="downPercent" type="number" min="0" max="100" step="1" value="50" inputmode="decimal">
+          <span class="suffix">%</span>
+        </div>
+        <input id="downPercentRange" type="range" min="0" max="100" step="1" value="50">
+        <div class="range-labels"><span>0%</span><span>50%</span><span>100%</span></div>
+        <div class="helper">Down payment amount: <strong id="downAmount">$78,000</strong></div>
+      </div>
+
+      <div class="field">
+        <label for="closingFees">Buyer closing fees <small>slider $0–$25k</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="closingFees" type="number" min="0" step="100" value="0" inputmode="decimal">
+        </div>
+        <input id="closingFeesRange" type="range" min="0" max="25000" step="250" value="0">
+        <div class="range-labels"><span>$0</span><span>$12.5k</span><span>$25k</span></div>
+        <div class="helper">Condo default: seller-paid buyer closing costs → $0 entered here.</div>
+      </div>
+
+      <div class="field">
+        <label for="interestRate">Interest rate <small>slider 5%–10%</small></label>
+        <div class="input-wrap percent">
+          <input id="interestRate" type="number" min="0" step="0.05" value="6" inputmode="decimal">
+          <span class="suffix">%</span>
+        </div>
+        <input id="interestRateRange" type="range" min="5" max="10" step="0.05" value="6">
+        <div class="range-labels"><span>5%</span><span>7.5%</span><span>10%</span></div>
+      </div>
+
+      <div class="field">
+        <label for="loanYears">Loan term <small>slider 5–30 years</small></label>
+        <div class="input-wrap years">
+          <input id="loanYears" type="number" min="1" max="50" step="1" value="15" inputmode="numeric">
+          <span class="suffix">yrs</span>
+        </div>
+        <input id="loanYearsRange" type="range" min="5" max="30" step="1" value="15">
+        <div class="range-labels"><span>5</span><span>15</span><span>30</span></div>
+      </div>
+    </div>
+
+    <div class="results">
+      <div class="result-card key">
+        <div class="result-label">Mortgage payment</div>
+        <div class="result-value" id="monthlyPI">$658.21</div>
+        <div class="result-sub">Principal + interest / month</div>
+      </div>
+
+      <div class="result-card key">
+        <div class="result-label">Cash to close</div>
+        <div class="result-value" id="cashToClose">$78,000</div>
+        <div class="result-sub">Down payment + entered closing fees</div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-label">Loan amount</div>
+        <div class="result-value" id="loanAmount">$78,000</div>
+        <div class="result-sub" id="ltvText">50.0% loan-to-value</div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-label">Closing fees</div>
+        <div class="result-value" id="closingFeesResult">$0</div>
+        <div class="result-sub">Separate from the down payment</div>
+      </div>
+    </div>
+
+    <div class="mini-grid">
+      <div class="mini"><span>Total interest</span><strong id="totalInterest">$40,477.50</strong></div>
+      <div class="mini"><span>Total mortgage payments</span><strong id="totalMortgagePaid">$118,477.50</strong></div>
+      <div class="mini"><span>Number of payments</span><strong id="paymentCount">180</strong></div>
+    </div>
+  </section>
+
+  <section class="section costs">
+    <div class="section-kicker">02 · Ongoing ownership costs</div>
+    <h2 class="section-title">What does the home cost each month?</h2>
+    <p class="section-intro">
+      Taxes and insurance are entered annually and automatically converted to monthly amounts.
+      Utilities, HOA, lawn care, and other recurring items are entered monthly.
+    </p>
+
+    <div class="input-grid">
+      <div class="field">
+        <label for="hoa">HOA <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="hoa" class="ongoing" data-period="monthly" type="number" min="0" step="10" value="636">
+        </div>
+        <input id="hoaRange" type="range" min="0" max="2000" step="10" value="636">
+        <div class="range-labels"><span>$0</span><span>$1k</span><span>$2k</span></div>
+      </div>
+
+      <div class="field">
+        <label for="propertyTax">Property tax <small>annual</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="propertyTax" class="ongoing" data-period="annual" type="number" min="0" step="50" value="1644">
+        </div>
+        <input id="propertyTaxRange" type="range" min="0" max="20000" step="100" value="1644">
+        <div class="range-labels"><span>$0</span><span>$10k</span><span>$20k</span></div>
+      </div>
+
+      <div class="field">
+        <label for="homeInsurance">Homeowners insurance <small>annual</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="homeInsurance" class="ongoing" data-period="annual" type="number" min="0" step="50" value="708">
+        </div>
+        <input id="homeInsuranceRange" type="range" min="0" max="10000" step="100" value="708">
+        <div class="range-labels"><span>$0</span><span>$5k</span><span>$10k</span></div>
+      </div>
+
+      <div class="field">
+        <label for="floodInsurance">Flood insurance <small>annual</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="floodInsurance" class="ongoing" data-period="annual" type="number" min="0" step="50" value="0">
+        </div>
+        <input id="floodInsuranceRange" type="range" min="0" max="15000" step="100" value="0">
+        <div class="range-labels"><span>$0</span><span>$7.5k</span><span>$15k</span></div>
+        <div class="helper">Condo default: association/master flood coverage is included in HOA.</div>
+      </div>
+
+      <div class="field">
+        <label for="cdd">CDD / district assessment <small>annual</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="cdd" class="ongoing" data-period="annual" type="number" min="0" step="50" value="0">
+        </div>
+        <input id="cddRange" type="range" min="0" max="10000" step="100" value="0">
+        <div class="range-labels"><span>$0</span><span>$5k</span><span>$10k</span></div>
+      </div>
+
+      <div class="field">
+        <label for="electricity">Electricity <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="electricity" class="ongoing" data-period="monthly" type="number" min="0" step="5" value="75">
+        </div>
+        <input id="electricityRange" type="range" min="0" max="500" step="5" value="75">
+        <div class="range-labels"><span>$0</span><span>$250</span><span>$500</span></div>
+      </div>
+
+      <div class="field">
+        <label for="internet">Internet <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="internet" class="ongoing" data-period="monthly" type="number" min="0" step="5" value="0">
+        </div>
+        <input id="internetRange" type="range" min="0" max="300" step="5" value="0">
+        <div class="range-labels"><span>$0</span><span>$150</span><span>$300</span></div>
+        <div class="helper">Condo default: included in HOA.</div>
+      </div>
+
+      <div class="field">
+        <label for="water">Water / sewer <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="water" class="ongoing" data-period="monthly" type="number" min="0" step="5" value="0">
+        </div>
+        <input id="waterRange" type="range" min="0" max="350" step="5" value="0">
+        <div class="range-labels"><span>$0</span><span>$175</span><span>$350</span></div>
+        <div class="helper">Condo default: included in HOA.</div>
+      </div>
+
+      <div class="field">
+        <label for="trash">Trash <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="trash" class="ongoing" data-period="monthly" type="number" min="0" step="5" value="0">
+        </div>
+        <input id="trashRange" type="range" min="0" max="200" step="5" value="0">
+        <div class="range-labels"><span>$0</span><span>$100</span><span>$200</span></div>
+        <div class="helper">Condo default: included in HOA.</div>
+      </div>
+
+      <div class="field">
+        <label for="lawnCare">Lawn / grounds care <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="lawnCare" class="ongoing" data-period="monthly" type="number" min="0" step="5" value="0">
+        </div>
+        <input id="lawnCareRange" type="range" min="0" max="500" step="5" value="0">
+        <div class="range-labels"><span>$0</span><span>$250</span><span>$500</span></div>
+        <div class="helper">Condo default: included in HOA.</div>
+      </div>
+
+      <div class="field">
+        <label for="otherMonthly">Other recurring cost <small>monthly</small></label>
+        <div class="input-wrap money">
+          <span class="prefix">$</span>
+          <input id="otherMonthly" class="ongoing" data-period="monthly" type="number" min="0" step="5" value="0">
+        </div>
+        <input id="otherMonthlyRange" type="range" min="0" max="1000" step="10" value="0">
+        <div class="range-labels"><span>$0</span><span>$500</span><span>$1k</span></div>
+        <div class="helper">Use for pest control, maintenance plan, parking, amenity fees, etc.</div>
+      </div>
+    </div>
+
+    <div class="monthly-total">
+      <div>
+        <div class="eyebrow">Estimated all-in monthly housing cost</div>
+        <div style="margin-top:5px;color:rgba(255,255,255,.82);font-size:13px;">
+          Mortgage P&amp;I + entered recurring ownership costs
+        </div>
+      </div>
+      <strong id="allInMonthly">$1,565.21/mo</strong>
+    </div>
+
+    <div class="breakdown" id="monthlyBreakdown"></div>
+
+    <div class="callout">
+      This calculator does not automatically add PMI, mortgage insurance, special assessments, repairs, maintenance reserves,
+      or lender-required escrow adjustments. Use “Other recurring cost” for any recurring item you want included.
+    </div>
+  </section>
+
+  <div class="footer">
+    Educational calculator only. Figures are estimates, not a loan quote, approval, insurance quote, tax advice, legal advice, or closing statement.
+    Verify actual loan terms, taxes, insurance, HOA/CDD assessments, utilities, fees, and closing figures with the relevant professionals.
+  </div>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const defaults = {
+    homePrice: 156000,
+    downPercent: 50,
+    closingFees: 0,
+    interestRate: 6,
+    loanYears: 15,
+    hoa: 636,
+    propertyTax: 1644,
+    homeInsurance: 708,
+    floodInsurance: 0,
+    cdd: 0,
+    electricity: 75,
+    internet: 0,
+    water: 0,
+    trash: 0,
+    lawnCare: 0,
+    otherMonthly: 0
+  };
+
+  const money = (value, cents = true) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: cents ? 2 : 0,
+      maximumFractionDigits: cents ? 2 : 0
+    }).format(Number.isFinite(value) ? value : 0);
+
+  const num = (id, fallback = 0) => {
+    const value = parseFloat($(id).value);
+    return Number.isFinite(value) ? value : fallback;
+  };
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  function payment(principal, annualRate, months) {
+    if (principal <= 0 || months <= 0) return 0;
+    const r = annualRate / 100 / 12;
+    if (r === 0) return principal / months;
+    return principal * r / (1 - Math.pow(1 + r, -months));
+  }
+
+  const pairs = [
+    ["homePrice", "homePriceRange"],
+    ["downPercent", "downPercentRange"],
+    ["closingFees", "closingFeesRange"],
+    ["interestRate", "interestRateRange"],
+    ["loanYears", "loanYearsRange"],
+    ["hoa", "hoaRange"],
+    ["propertyTax", "propertyTaxRange"],
+    ["homeInsurance", "homeInsuranceRange"],
+    ["floodInsurance", "floodInsuranceRange"],
+    ["cdd", "cddRange"],
+    ["electricity", "electricityRange"],
+    ["internet", "internetRange"],
+    ["water", "waterRange"],
+    ["trash", "trashRange"],
+    ["lawnCare", "lawnCareRange"],
+    ["otherMonthly", "otherMonthlyRange"]
+  ];
+
+  function syncRangeFromInput(inputId, rangeId) {
+    const input = $(inputId);
+    const range = $(rangeId);
+    const value = parseFloat(input.value);
+
+    if (!Number.isFinite(value)) return;
+    const min = parseFloat(range.min);
+    const max = parseFloat(range.max);
+    range.value = clamp(value, min, max);
+  }
+
+  pairs.forEach(([inputId, rangeId]) => {
+    const input = $(inputId);
+    const range = $(rangeId);
+
+    range.addEventListener("input", () => {
+      input.value = range.value;
+      update();
+    });
+
+    input.addEventListener("input", () => {
+      syncRangeFromInput(inputId, rangeId);
+      update();
+    });
+  });
+
+  function monthlyOngoing() {
+    let total = 0;
+    document.querySelectorAll(".ongoing").forEach((input) => {
+      const value = Math.max(0, parseFloat(input.value) || 0);
+      total += input.dataset.period === "annual" ? value / 12 : value;
+    });
+    return total;
+  }
+
+  function updateBreakdown(monthlyPI) {
+    const items = [
+      ["Mortgage P&I", monthlyPI],
+      ["HOA", Math.max(0, num("hoa"))],
+      ["Property tax", Math.max(0, num("propertyTax")) / 12],
+      ["Homeowners insurance", Math.max(0, num("homeInsurance")) / 12],
+      ["Flood insurance", Math.max(0, num("floodInsurance")) / 12],
+      ["CDD / district assessment", Math.max(0, num("cdd")) / 12],
+      ["Electricity", Math.max(0, num("electricity"))],
+      ["Internet", Math.max(0, num("internet"))],
+      ["Water / sewer", Math.max(0, num("water"))],
+      ["Trash", Math.max(0, num("trash"))],
+      ["Lawn / grounds care", Math.max(0, num("lawnCare"))],
+      ["Other recurring cost", Math.max(0, num("otherMonthly"))]
+    ];
+
+    const html = items
+      .filter(([label, value]) => value > 0 || label === "Mortgage P&I" || label === "HOA")
+      .map(([label, value]) =>
+        `<div class="line-item"><span>${label}</span><strong>${money(value)}/mo</strong></div>`
+      )
+      .join("");
+
+    $("monthlyBreakdown").innerHTML = html;
+  }
+
+  function update() {
+    const price = Math.max(0, num("homePrice", defaults.homePrice));
+    const downPct = clamp(num("downPercent", defaults.downPercent), 0, 100);
+    const fees = Math.max(0, num("closingFees", defaults.closingFees));
+    const rate = Math.max(0, num("interestRate", defaults.interestRate));
+    const years = Math.max(1, num("loanYears", defaults.loanYears));
+
+    const downAmount = price * downPct / 100;
+    const principal = Math.max(0, price - downAmount);
+    const months = Math.max(1, Math.round(years * 12));
+    const monthlyPI = payment(principal, rate, months);
+    const totalMortgagePaid = monthlyPI * months;
+    const totalInterest = Math.max(0, totalMortgagePaid - principal);
+    const cashToClose = downAmount + fees;
+    const ongoing = monthlyOngoing();
+    const allIn = monthlyPI + ongoing;
+    const ltv = price > 0 ? principal / price * 100 : 0;
+
+    $("downAmount").textContent = money(downAmount, false);
+    $("monthlyPI").textContent = money(monthlyPI);
+    $("cashToClose").textContent = money(cashToClose, false);
+    $("loanAmount").textContent = money(principal, false);
+    $("ltvText").textContent = `${ltv.toFixed(1)}% loan-to-value`;
+    $("closingFeesResult").textContent = money(fees, false);
+    $("totalInterest").textContent = money(totalInterest);
+    $("totalMortgagePaid").textContent = money(totalMortgagePaid);
+    $("paymentCount").textContent = months.toLocaleString("en-US");
+    $("allInMonthly").textContent = `${money(allIn)}/mo`;
+
+    updateBreakdown(monthlyPI);
+  }
+
+  function setValues(values) {
+    Object.entries(values).forEach(([id, value]) => {
+      const input = $(id);
+      if (input) input.value = value;
+    });
+
+    pairs.forEach(([inputId, rangeId]) => syncRangeFromInput(inputId, rangeId));
+    update();
+  }
+
+  $("resetCondo").addEventListener("click", () => setValues(defaults));
+
+  $("clearExtras").addEventListener("click", () => {
+    setValues({
+      hoa: 0,
+      propertyTax: 0,
+      homeInsurance: 0,
+      floodInsurance: 0,
+      cdd: 0,
+      electricity: 0,
+      internet: 0,
+      water: 0,
+      trash: 0,
+      lawnCare: 0,
+      otherMonthly: 0
+    });
+  });
+
+  $("printButton").addEventListener("click", () => window.print());
+
+  update();
+})();
+</script>
+</body>
+</html>
