@@ -1049,19 +1049,19 @@
       <div class="price-grid">
         <div class="price-card">
           <div class="price-label">Seller financing purchase price</div>
-          <div class="price-number">$160,000</div>
-          <div class="price-sub">6% fixed · $80,000–$120,000 paid at closing · choose a 5–15 year repayment term</div>
+          <div class="price-number">$156,000</div>
+          <div class="price-sub">6% fixed · from $65,000 paid at closing · choose a 5–15 year repayment term · seller-paid buyer closing costs</div>
         </div>
         <div class="price-card">
-          <div class="price-label">Cash purchase</div>
+          <div class="price-label">Cash / conventional purchase price</div>
           <div class="price-number">$145,000</div>
-          <div class="price-sub">A separate cash-purchase option. Ask for current terms before relying on any price comparison.</div>
+          <div class="price-sub">Used as the purchase price in the traditional-bank comparison below. Final transaction terms are subject to agreement.</div>
         </div>
       </div>
 
       <div class="hero-actions interactive-only">
         <a class="button button-primary" href="#calculator">Build your payment</a>
-        <a class="button button-ghost" href="tel:+12672753997">Call 267-275-3997</a>
+        <a class="button button-ghost" href="tel:+12672753997">Call Anna · 267-275-3997</a>
         <a class="button button-ghost" href="sms:+12672753997">Text seller</a>
         <a class="button button-ghost" href="https://www.zillow.com/homedetails/2700-Bayshore-Blvd-APT-3111-Dunedin-FL-34698/47071268_zpid/" target="_blank" rel="noopener">View Zillow</a>
         <button class="button button-ghost" id="printButton" type="button">Print / Save PDF</button>
@@ -1087,13 +1087,15 @@
     <p class="section-intro">The goal of this page is simple: make the numbers visible before you contact anyone.</p>
     <div class="facts">
       <div class="fact"><div class="fact-label">Seller rate</div><div class="fact-value">6.00% fixed</div></div>
-      <div class="fact"><div class="fact-label">Down payment range</div><div class="fact-value">$80k–$120k</div></div>
+      <div class="fact"><div class="fact-label">Amount due at closing</div><div class="fact-value">From $65k</div></div>
       <div class="fact"><div class="fact-label">Repayment term</div><div class="fact-value">5–15 years</div></div>
       <div class="fact"><div class="fact-label">HOA</div><div class="fact-value">$636 / month</div></div>
     </div>
     <div class="callout">
-      <strong>Seller financing does not require a traditional mortgage lender.</strong>
-      Final eligibility and terms are still subject to mutually agreed transaction documents and applicable law. No balloon payment or prepayment penalty is assumed by the calculator below unless final documents say otherwise.
+      <strong>Bring the agreed amount at closing; seller intends to cover customary buyer closing, title, recording, and seller-financing documentation costs.</strong>
+      Buyer remains responsible for ongoing HOA dues, property taxes, insurance, electricity, and other ownership expenses after closing.
+      Final eligibility, allocation of costs, and financing terms are subject to mutually agreed transaction documents and applicable law.
+      No balloon payment or prepayment penalty is assumed by the calculator below unless final documents say otherwise.
     </div>
   </section>
 
@@ -1104,14 +1106,14 @@
 
     <div class="grid-2">
       <div class="field">
-        <label for="downPayment">Amount paid at closing <small>$80,000–$120,000</small></label>
-        <div class="money-input"><input id="downPayment" type="number" min="80000" max="120000" step="1000" value="80000" inputmode="numeric"></div>
-        <input id="downSlider" type="range" min="80000" max="120000" step="1000" value="80000" aria-label="Amount paid at closing">
-        <div class="range-labels"><span>$80k</span><span>$100k</span><span>$120k</span></div>
+        <label for="downPayment">Amount paid at closing <small>minimum $65,000 · field is editable</small></label>
+        <div class="money-input"><input id="downPayment" type="number" min="65000" max="156000" step="1000" value="65000" inputmode="numeric"></div>
+        <input id="downSlider" type="range" min="65000" max="156000" step="1000" value="65000" aria-label="Amount paid at closing">
+        <div class="range-labels"><span>$65k</span><span>$110k</span><span>$156k</span></div>
         <div class="preset-row">
-          <button class="preset" type="button" data-down="80000">$80k down</button>
-          <button class="preset" type="button" data-down="100000">$100k down</button>
-          <button class="preset" type="button" data-down="120000">$120k down</button>
+          <button class="preset" type="button" data-down="65000">$65k</button>
+          <button class="preset" type="button" data-down="80000">$80k</button>
+          <button class="preset" type="button" data-down="100000">$100k</button>
         </div>
       </div>
 
@@ -1142,11 +1144,11 @@
     <div class="results" aria-live="polite">
       <div class="result result-main">
         <div class="result-label">Required monthly principal & interest</div>
-        <div class="result-value" id="scheduledPayment">$888.16</div>
-        <div class="result-sub" id="paymentCaption">6% fixed · 10 years · $80,000 financed</div>
+        <div class="result-value" id="scheduledPayment">$1,010.29</div>
+        <div class="result-sub" id="paymentCaption">6% fixed · 10 years · $91,000 financed</div>
       </div>
-      <div class="result"><div class="result-label">Amount financed</div><div class="result-value" id="amountFinanced">$80,000</div><div class="result-sub" id="financedPercent">50.0% of purchase price</div></div>
-      <div class="result"><div class="result-label">Payment with extra principal</div><div class="result-value" id="paymentWithExtra">$888.16</div></div>
+      <div class="result"><div class="result-label">Amount financed</div><div class="result-value" id="amountFinanced">$91,000</div><div class="result-sub" id="financedPercent">58.3% of purchase price</div></div>
+      <div class="result"><div class="result-label">Payment with extra principal</div><div class="result-value" id="paymentWithExtra">$1,010.29</div></div>
       <div class="result"><div class="result-label">Estimated payoff</div><div class="result-value" id="payoffDate">—</div><div class="result-sub" id="payoffDuration">10 years</div></div>
       <div class="result"><div class="result-label">Total interest</div><div class="result-value" id="totalInterest">—</div></div>
       <div class="result"><div class="result-label">Interest saved by extra payments</div><div class="result-value" id="interestSaved">$0.00</div></div>
@@ -1185,6 +1187,7 @@
         <div class="line-item"><span>Exterior / grounds maintenance</span><strong>Included</strong></div>
         <div class="line-item"><span>Association / common-area insurance</span><strong>Included</strong></div>
         <div class="line-item"><span>Association / master flood insurance</span><strong>Included</strong></div>
+        <div class="line-item"><span>Pinellas Zone AE single-family NFIP median <small>(comparison only)</small></span><strong>~$182/mo</strong></div>
         <div class="line-item"><span>Heated community pool</span><strong>Included</strong></div>
         <div class="line-item"><span>Pool maintenance</span><strong>Included</strong></div>
       </div>
@@ -1226,9 +1229,9 @@
         <div class="house-input-row"><span>Lawn / outdoor maintenance</span><div class="money-input"><input class="house-cost" data-label="Lawn" type="number" min="0" value="100"></div></div>
         <div class="house-input-row"><span>Trash</span><div class="money-input"><input class="house-cost" data-label="Trash" type="number" min="0" value="50"></div></div>
         <div class="house-input-row"><span>Electricity</span><div class="money-input"><input class="house-cost" data-label="Electricity" type="number" min="0" value="150"></div></div>
-        <div class="house-input-row"><span>Flood insurance estimate</span><div class="money-input"><input class="house-cost" data-label="Flood insurance" type="number" min="0" value="116"></div></div>
-        <div class="house-total"><span>Example total</span><strong id="houseMonthlyTotal">$596/mo</strong></div>
-        <div class="result-sub" id="houseAnnualTotal">$7,152/year</div>
+        <div class="house-input-row"><span>Flood insurance · Pinellas Zone AE median</span><div class="money-input"><input class="house-cost" data-label="Flood insurance" type="number" min="0" value="182"></div></div>
+        <div class="house-total"><span>Example total</span><strong id="houseMonthlyTotal">$662/mo</strong></div>
+        <div class="result-sub" id="houseAnnualTotal">$7,944/year</div>
       </div>
 
       <div class="house-cost-box">
@@ -1258,73 +1261,111 @@
     </div>
 
     <div class="fine-print">
-      House-cost figures are user-adjustable illustrations and will vary by property, usage, provider, flood risk, and maintenance needs. Association/master flood coverage does not necessarily replace any coverage a buyer may want or be required to obtain for personal property, interior improvements, deductibles, or other individual exposure.
+      House-cost figures are user-adjustable illustrations and will vary by property, usage, provider, flood risk, and maintenance needs.
+      The flood-insurance field starts at about <strong>$182/month ($2,178/year)</strong>, the 2026 median NFIP premium reported for
+      single-family policies in Pinellas County's AE zone from FEMA-derived policy data. It is a comparison point, not a quote.
+      Under FEMA Risk Rating 2.0, actual premiums depend on the individual property, including elevation, distance to water,
+      replacement cost, construction, and other risk characteristics. Association/master flood coverage does not necessarily replace
+      any coverage a condo buyer may want or be required to obtain for personal property, interior improvements, deductibles, or other individual exposure.
     </div>
   </section>
 
   <section class="section card" id="bank">
     <div class="section-kicker">05 · Financing comparison</div>
-    <h2 class="section-title">6% seller financing vs. a bank rate</h2>
-    <p class="section-intro">This section isolates the financing cost by using the <strong>same financed balance and the same term</strong> selected in the seller-financing calculator above. Change the bank rate from 7% to 8% and enter any lender-specific fees from an actual Loan Estimate.</p>
+    <h2 class="section-title">6% seller financing vs. buying at $145,000 with a bank</h2>
+    <p class="section-intro">
+      This comparison uses the <strong>same amount paid at closing</strong> selected above.
+      Seller-financing purchase price is $156,000. The bank example uses a $145,000 purchase price,
+      an illustrative 8% rate, the same repayment term, and an editable estimate for buyer closing costs.
+    </p>
 
-    <div class="field">
-      <label for="bankRate">Traditional bank interest rate <small>7.00%–8.00%</small></label>
-      <input id="bankRate" type="number" min="7" max="8" step="0.05" value="7.5">
-      <input id="bankRateSlider" type="range" min="7" max="8" step="0.05" value="7.5" aria-label="Bank mortgage rate">
-      <div class="range-labels"><span>7.0%</span><span>7.5%</span><span>8.0%</span></div>
-      <div class="preset-row">
-        <button class="preset" type="button" data-rate="7">7%</button>
-        <button class="preset" type="button" data-rate="7.5">7.5%</button>
-        <button class="preset" type="button" data-rate="8">8%</button>
-      </div>
+    <div class="compare-highlight">
+      <h3 id="dealHeadline">With the default assumptions, seller financing has the lower estimated total buyer cost.</h3>
+      <p id="dealSubhead">The result updates automatically when you change the amount paid at closing, term, bank rate, or bank closing-cost estimate.</p>
     </div>
 
-    <div class="field">
-      <label for="bankFees">Illustrative bank origination / lender charges <small>1% placeholder · editable</small></label>
-      <div class="money-input"><input id="bankFees" type="number" min="0" step="50" value="800"></div>
-      <div class="preset-row">
-        <button class="preset" id="useOnePercentFee" type="button">Use 1% placeholder</button>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="field">
+        <label for="bankRate">Illustrative bank interest rate <small>second-home / investment planning range</small></label>
+        <input id="bankRate" type="number" min="7.5" max="9" step="0.05" value="8">
+        <input id="bankRateSlider" type="range" min="7.5" max="9" step="0.05" value="8" aria-label="Bank mortgage rate">
+        <div class="range-labels"><span>7.5%</span><span>8.25%</span><span>9.0%</span></div>
+        <div class="preset-row">
+          <button class="preset" type="button" data-rate="7.5">7.5%</button>
+          <button class="preset" type="button" data-rate="8">8%</button>
+          <button class="preset" type="button" data-rate="8.5">8.5%</button>
+          <button class="preset" type="button" data-rate="9">9%</button>
+        </div>
       </div>
-      <div class="result-sub">
-        To make the comparison easier to visualize, this calculator starts with an illustrative lender-charge placeholder equal to
-        <strong>1% of the amount financed</strong> (for example, $800 on an $80,000 loan). This is not a lender quote or guaranteed market average.
-        Replace it with the lender-specific charges shown on an actual Loan Estimate. Title, taxes, insurance, recording, prepaid items,
-        and other costs that may apply to either transaction are not automatically counted as bank-only fees.
+
+      <div class="field">
+        <label for="bankFees">Estimated buyer closing costs with bank <small>editable · default 5% high-side planning estimate</small></label>
+        <div class="money-input"><input id="bankFees" type="number" min="0" step="50" value="7250"></div>
+        <div class="preset-row">
+          <button class="preset" type="button" data-bank-fee-pct="2">2% · $2,900</button>
+          <button class="preset" type="button" data-bank-fee-pct="3.5">3.5% · $5,075</button>
+          <button class="preset" type="button" data-bank-fee-pct="5">5% · $7,250</button>
+        </div>
+        <div class="result-sub">
+          CFPB and Freddie Mac use roughly 2%–5% of purchase price as a planning range for mortgage closing costs.
+          The 5% default is intentionally a high-side illustration, not a lender quote. It can include lender/origination,
+          underwriting, appraisal, title/settlement, recording and other transaction costs. HOA charges are not included here.
+          Replace this estimate with an actual Loan Estimate whenever available.
+        </div>
       </div>
     </div>
 
     <div class="compare-cards">
-      <div class="compare-card seller">
+      <div class="compare-card seller" id="sellerDealCard">
         <div class="compare-head"><div class="result-label">Seller financing</div><strong>6.00% fixed</strong></div>
         <div class="compare-body">
+          <div class="line-item"><span>Purchase price</span><strong>$156,000</strong></div>
+          <div class="line-item"><span>Paid at closing</span><strong id="sellerCompareDown">—</strong></div>
           <div class="line-item"><span>Amount financed</span><strong id="sellerCompareLoan">—</strong></div>
           <div class="line-item"><span>Term</span><strong id="sellerCompareTerm">—</strong></div>
-          <div class="line-item"><span>Monthly P&I</span><strong id="sellerComparePayment">—</strong></div>
+          <div class="line-item"><span>Monthly P&amp;I</span><strong id="sellerComparePayment">—</strong></div>
           <div class="line-item"><span>Total interest</span><strong id="sellerCompareInterest">—</strong></div>
-          <div class="line-item"><span>Traditional lender charges</span><strong>Not applicable</strong></div>
+          <div class="line-item"><span>Buyer closing/title/recording/financing-document fees</span><strong>$0 assumed</strong></div>
+          <div class="line-item line-total"><span>Estimated total buyer cost</span><strong id="sellerDealTotal">—</strong></div>
         </div>
       </div>
 
-      <div class="compare-card">
-        <div class="compare-head"><div class="result-label">Traditional bank example</div><strong id="bankCompareRate">7.50%</strong></div>
+      <div class="compare-card" id="bankDealCard">
+        <div class="compare-head"><div class="result-label">Traditional bank example</div><strong id="bankCompareRate">8.00%</strong></div>
         <div class="compare-body">
+          <div class="line-item"><span>Purchase price</span><strong>$145,000</strong></div>
+          <div class="line-item"><span>Paid at closing</span><strong id="bankCompareDown">—</strong></div>
           <div class="line-item"><span>Amount financed</span><strong id="bankCompareLoan">—</strong></div>
           <div class="line-item"><span>Term</span><strong id="bankCompareTerm">—</strong></div>
-          <div class="line-item"><span>Monthly P&I</span><strong id="bankComparePayment">—</strong></div>
+          <div class="line-item"><span>Monthly P&amp;I</span><strong id="bankComparePayment">—</strong></div>
           <div class="line-item"><span>Total interest</span><strong id="bankCompareInterest">—</strong></div>
-          <div class="line-item"><span>Entered lender charges</span><strong id="bankCompareFees">$0</strong></div>
+          <div class="line-item"><span>Estimated buyer closing costs</span><strong id="bankCompareFees">—</strong></div>
+          <div class="line-item line-total"><span>Estimated total buyer cost</span><strong id="bankDealTotal">—</strong></div>
         </div>
       </div>
     </div>
 
     <div class="metrics">
-      <div class="metric"><div class="metric-label">Lower monthly P&I at 6%</div><div class="metric-value" id="bankMonthlyDiff">—</div></div>
-      <div class="metric"><div class="metric-label">Interest difference</div><div class="metric-value" id="bankInterestDiff">—</div></div>
-      <div class="metric"><div class="metric-label">Interest + entered lender charges</div><div class="metric-value" id="bankTotalDiff">—</div></div>
+      <div class="metric">
+        <div class="metric-label">Rate advantage</div>
+        <div class="metric-value" id="bankRateAdvantage">2.00 pts</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Interest saved at 6% on the same financed balance</div>
+        <div class="metric-value" id="sameBalanceInterestSavings">—</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label" id="dealDifferenceLabel">Estimated full-deal advantage</div>
+        <div class="metric-value" id="dealDifference">—</div>
+      </div>
     </div>
 
     <div class="callout">
-      <strong>Important full-deal comparison:</strong> this section intentionally compares financing cost only. The page also shows a separate $145,000 cash price. A conventionally financed purchase price has not been assumed here. Before deciding which structure is cheaper overall, compare the actual purchase price, amount paid at closing, lender costs, interest, and final closing documents together.
+      <strong>Why there are two ways to look at this:</strong>
+      the 6% note is cheaper financing than an 8% note on the same borrowed amount.
+      The full transaction also has different purchase prices ($156,000 seller-financed vs. $145,000 bank/cash comparison),
+      so the winner can change with the amount paid at closing, rate, term and actual bank closing costs.
+      This calculator shows both instead of assuming one structure always wins.
     </div>
   </section>
 
@@ -1365,19 +1406,19 @@
     <div class="contact-card">
       <div class="section-kicker" style="color:#d9eee2;">07 · Get in touch</div>
       <div class="eyebrow">Questions or showing request</div>
-      <h2>Interested in the condo?</h2>
-      <p>Call or text directly to discuss the property, seller-financing terms, or a showing.</p>
+      <h2>Contact Anna</h2>
+      <p>Call or text Anna directly to discuss the property, seller-financing terms, or a showing.</p>
       <div class="hero-actions interactive-only">
-        <a class="button button-primary" href="tel:+12672753997">Call 267-275-3997</a>
+        <a class="button button-primary" href="tel:+12672753997">Call Anna · 267-275-3997</a>
         <a class="button button-ghost" href="sms:+12672753997">Send a text</a>
         <button class="button button-ghost" id="shareButton" type="button">Share this page</button>
       </div>
-      <div class="print-only">Contact: 267-275-3997</div>
+      <div class="print-only">Contact: Anna · 267-275-3997</div>
     </div>
   </section>
 
   <div class="fine-print">
-    <strong>Important disclosures.</strong> This website and its calculators are for informational and illustrative purposes only. They are not a loan offer, credit approval, commitment to lend, legal advice, tax advice, appraisal, or guarantee of seller financing. Seller financing is subject to mutually agreed terms, qualification requirements, executed purchase and financing documents, closing requirements, and applicable law. Calculator estimates assume a 6.00% fixed annual interest rate and the user-selected repayment term. Final documents control if they differ from this illustration. Property taxes, insurance, HOA assessments, electricity, services, amenities, association insurance, and association flood-insurance coverage should be independently verified from current documents before closing. Future HOA changes, special assessments, insurance changes, repairs, closing costs, title/recording charges, taxes, prepaid items, and transaction-specific costs may apply. House-cost and bank-rate examples are illustrations and are not quotes or guarantees.
+    <strong>Important disclosures.</strong> This website and its calculators are for informational and illustrative purposes only. They are not a loan offer, credit approval, commitment to lend, legal advice, tax advice, appraisal, insurance quote, or guarantee of seller financing. Seller financing is subject to mutually agreed terms, qualification requirements, executed purchase and financing documents, closing requirements, and applicable law. Calculator estimates assume a 6.00% fixed annual interest rate and the user-selected repayment term. The seller-paid buyer closing-cost illustration is subject to the final contract and closing statement; ongoing HOA dues, property taxes, insurance, electricity, and other ownership expenses remain the buyer's responsibility after closing. Final documents control if they differ from this illustration. Property taxes, insurance, HOA assessments, electricity, services, amenities, association insurance, and association flood-insurance coverage should be independently verified from current documents before closing. Future HOA changes, special assessments, insurance changes, repairs, closing costs, title/recording charges, taxes, prepaid items, and transaction-specific costs may apply. Flood-cost, house-cost and bank-rate examples are illustrations and are not quotes or guarantees.
   </div>
 
 </main>
@@ -1389,14 +1430,18 @@
   "use strict";
 
   const CONFIG = {
-    sellerPrice: 160000,
+    sellerPrice: 156000,
     cashPrice: 145000,
     sellerRate: 6,
-    minDown: 80000,
-    maxDown: 120000,
+    minDown: 65000,
+    maxDown: 156000,
     minTerm: 5,
     maxTerm: 15,
     defaultTerm: 10,
+    defaultBankRate: 8,
+    minBankRate: 7.5,
+    maxBankRate: 9,
+    defaultBankClosingCosts: 7250,
     hoa: 636,
     annualTaxes: 1648,
     annualInsurance: 2066,
@@ -1578,8 +1623,6 @@
   const bankRate = $("bankRate");
   const bankRateSlider = $("bankRateSlider");
   const bankFees = $("bankFees");
-  const useOnePercentFee = $("useOnePercentFee");
-  let bankFeesAuto = true;
 
   function sellerScenario() {
     const downValue = clamp(num(down, CONFIG.minDown), CONFIG.minDown, CONFIG.maxDown);
@@ -1626,20 +1669,30 @@
     $("condoElectricCompare").textContent = money(electricValue, false) + "/mo";
     $("hoaCompare").textContent = money(hoaValue, false) + "/mo";
 
-    const br = clamp(num(bankRate, 7.5), 7, 8);
+    const br = clamp(num(bankRate, CONFIG.defaultBankRate), CONFIG.minBankRate, CONFIG.maxBankRate);
+    const fees = Math.max(0, num(bankFees, CONFIG.defaultBankClosingCosts));
 
-    if (bankFeesAuto) {
-      bankFees.value = Math.round(s.principal * 0.01);
-    }
+    // Full-deal comparison uses the same amount paid at closing.
+    // Seller-financed purchase price: $156,000.
+    // Bank/cash comparison purchase price: $145,000.
+    const bankDown = Math.min(s.downValue, CONFIG.cashPrice);
+    const bankPrincipal = Math.max(0, CONFIG.cashPrice - bankDown);
+    const bankPayment = loanPayment(bankPrincipal, br, s.months);
+    const bankInterest = bankPayment * s.months - bankPrincipal;
 
-    const fees = Math.max(0, num(bankFees, Math.round(s.principal * 0.01)));
-    const bankPayment = loanPayment(s.principal, br, s.months);
-    const bankInterest = bankPayment * s.months - s.principal;
-    const monthlyDiff = Math.max(0, bankPayment - s.scheduled);
-    const interestDiff = Math.max(0, bankInterest - s.normal.interest);
+    // Financing-only comparison: same balance and same term, 6% vs selected bank rate.
+    const sameBalanceBankPayment = loanPayment(s.principal, br, s.months);
+    const sameBalanceBankInterest = sameBalanceBankPayment * s.months - s.principal;
+    const sameBalanceInterestSavings = sameBalanceBankInterest - s.normal.interest;
 
+    const sellerDealTotal = CONFIG.sellerPrice + s.normal.interest;
+    const bankDealTotal = CONFIG.cashPrice + bankInterest + fees;
+    const dealDiff = bankDealTotal - sellerDealTotal;
+
+    $("sellerCompareDown").textContent = money(s.downValue, false);
+    $("bankCompareDown").textContent = money(bankDown, false);
     $("sellerCompareLoan").textContent = money(s.principal, false);
-    $("bankCompareLoan").textContent = money(s.principal, false);
+    $("bankCompareLoan").textContent = money(bankPrincipal, false);
     $("sellerCompareTerm").textContent = s.years + " years";
     $("bankCompareTerm").textContent = s.years + " years";
     $("sellerComparePayment").textContent = money(s.scheduled);
@@ -1648,9 +1701,36 @@
     $("bankCompareInterest").textContent = money(bankInterest);
     $("bankCompareRate").textContent = br.toFixed(2) + "%";
     $("bankCompareFees").textContent = money(fees, false);
-    $("bankMonthlyDiff").textContent = money(monthlyDiff) + "/mo";
-    $("bankInterestDiff").textContent = money(interestDiff);
-    $("bankTotalDiff").textContent = money(interestDiff + fees);
+    $("sellerDealTotal").textContent = money(sellerDealTotal);
+    $("bankDealTotal").textContent = money(bankDealTotal);
+
+    $("bankRateAdvantage").textContent = Math.max(0, br - CONFIG.sellerRate).toFixed(2) + " pts";
+    $("sameBalanceInterestSavings").textContent =
+      (sameBalanceInterestSavings >= 0 ? money(sameBalanceInterestSavings) + " less" : money(Math.abs(sameBalanceInterestSavings)) + " more");
+
+    const dealLabel = $("dealDifferenceLabel");
+    const dealValue = $("dealDifference");
+    const dealHeadline = $("dealHeadline");
+    const dealSubhead = $("dealSubhead");
+
+    if (dealDiff > 0.005) {
+      dealLabel.textContent = "Seller-financing estimated advantage";
+      dealValue.textContent = money(dealDiff);
+      dealHeadline.textContent = "With these assumptions, seller financing has the lower estimated total buyer cost.";
+      dealSubhead.textContent =
+        `Estimated advantage: ${money(dealDiff)} over ${s.years} years, including the entered bank closing-cost estimate.`;
+    } else if (dealDiff < -0.005) {
+      dealLabel.textContent = "Bank example estimated advantage";
+      dealValue.textContent = money(Math.abs(dealDiff));
+      dealHeadline.textContent = "With these assumptions, the bank example has the lower estimated total buyer cost.";
+      dealSubhead.textContent =
+        `Estimated advantage: ${money(Math.abs(dealDiff))} over ${s.years} years. Change the assumptions to compare another scenario.`;
+    } else {
+      dealLabel.textContent = "Estimated full-deal difference";
+      dealValue.textContent = "$0.00";
+      dealHeadline.textContent = "With these assumptions, the two structures are approximately equal in total buyer cost.";
+      dealSubhead.textContent = "Change the amount paid at closing, term, bank rate, or bank closing-cost estimate to compare another scenario.";
+    }
 
     let houseTotal = 0;
     document.querySelectorAll(".house-cost").forEach((input) => { houseTotal += Math.max(0, num(input, 0)); });
@@ -1665,7 +1745,7 @@
     const y = Math.round(clamp(num(term, CONFIG.defaultTerm), CONFIG.minTerm, CONFIG.maxTerm));
     term.value = y;
     termSlider.value = y;
-    const br = clamp(num(bankRate, 7.5), 7, 8);
+    const br = clamp(num(bankRate, CONFIG.defaultBankRate), CONFIG.minBankRate, CONFIG.maxBankRate);
     bankRate.value = br;
     bankRateSlider.value = br;
     updateAll();
@@ -1684,14 +1764,15 @@
 
   [extra, firstPayment, hoa, taxes, insurance, electricity].forEach((el) => el.addEventListener("input", updateAll));
 
-  bankFees.addEventListener("input", () => {
-    bankFeesAuto = false;
-    updateAll();
-  });
+  bankFees.addEventListener("input", updateAll);
 
-  useOnePercentFee.addEventListener("click", () => {
-    bankFeesAuto = true;
-    updateAll();
+  document.querySelectorAll("[data-bank-fee-pct]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const pct = parseFloat(button.dataset.bankFeePct);
+      if (!Number.isFinite(pct)) return;
+      bankFees.value = Math.round(CONFIG.cashPrice * pct / 100);
+      updateAll();
+    });
   });
   document.querySelectorAll(".house-cost").forEach((el) => el.addEventListener("input", updateAll));
 
@@ -1724,7 +1805,7 @@
   $("shareButton").addEventListener("click", async () => {
     const data = {
       title: document.title,
-      text: "Dunedin waterfront condo with 6% seller-financing calculator",
+      text: "Dunedin waterfront condo · $156,000 seller-financing option at 6% fixed",
       url: window.location.href
     };
     if (navigator.share) {
